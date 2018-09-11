@@ -1,3 +1,5 @@
+console.log("begin script.js");
+
 ///////////
 function getParameterByName(name, url) {
     if (!url) {
