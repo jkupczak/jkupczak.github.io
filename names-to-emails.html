@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <style>
+      .main {
+        display:flex;
+        width:66%;
+      }
+      .main textarea {
+        width:50%;
+        height:500px;
+        margin:20px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="main">
+      <textarea id="input"></textarea>
+      <textarea id="output"></textarea>
+    </div>
+
+    <script>
+
+      document.getElementById("input").addEventListener("change", processNames, false);
+
+      function processNames() {
+        console.log(this);
+        var array = this.split("\n");
+        console.log(array);
+      }
+
+    </script>
+  </body>
+</html>
