@@ -17,18 +17,78 @@
   <body>
 
     <div class="main">
-      <textarea id="input"></textarea>
+      <textarea id="input">
+        James Kupczak
+        Jeff Oster
+      </textarea>
       <textarea id="output"></textarea>
     </div>
 
+
     <script>
 
-      document.getElementById("input").addEventListener("change", processNames, false);
+      //
+      var input = document.getElementById("input");
+      input.addEventListener("change", processNames, false);
 
+      //
+      var output = document.getElementById("output");
+
+      var emailArray2 = {
+        'Brandon Suehiro': 'brandon.suehiro@medbridgeed.com',
+        'Brandon Suehiro2': 'brandon.suehiro@medbridgeed.com',
+      };
+      console.log(emailArray2);
+
+      //
+      var emailArray = [
+        {name: 'Alexandra Klein', email: 'alexandra.klein@medbridgeed.com'},
+        {name: 'Brandon Suehiro', email: 'brandon.suehiro@medbridgeed.com'},
+        {name: 'Garrett Vincent', email: 'garrett.vincent@medbridgeed.com'},
+        {name: 'Heath Jones', email: 'heath.jones@medbridgeed.com'},
+        {name: 'Jamie Griffin', email: 'jamie.griffin@medbridgeed.com'},
+        {name: 'James Griffin', email: 'jamie.griffin@medbridgeed.com'},
+        {name: 'James Kupczak', email: 'james@medbridgeed.com'},
+        {name: 'Jeff Oster', email: 'jeff@medbridgeed.com'},
+        {name: 'Leah Shlyakhov', email: 'leah@medbridgeed.com'},
+        {name: 'Melanie Davis', email: 'melanie.davis@medbridgeed.com'},
+        {name: 'Nathan Whalen', email: 'nathan.whalen@medbridgeed.com'},
+        {name: 'Rachel Caldwell', email: 'rachel.caldwell@medbridgeed.com'},
+        {name: 'Ryan Nelson', email: 'ryan.nelson@medbridgeed.com'},
+        {name: 'Trevor Harris', email: 'trevor.harris@medbridgeed.com'},
+        {name: 'Vanessa Quarantello', email: 'vanessa.quarantello@medbridgeed.com'},
+        {name: 'Zach Francis', email: 'zach.francis@medbridgeed.com'},
+        {name: 'Zack Hill', email: 'zack.hill@medbridgeed.com'},
+        {name: 'Amy Carlson', email: 'amy@medbridgeed.com'},
+        {name: 'Amy King', email: 'amy.king@medbridgeed.com'},
+        {name: 'Cammi Powers', email: 'cammi@medbridgeed.com'},
+        {name: 'David Bradley', email: 'david.bradley@medbridgeed.com'},
+        {name: 'Erik Nielsen', email: 'erik.nielsen@medbridgeed.com'},
+        {name: 'Luis Perez', email: 'luis.perez@medbridgeed.com'},
+        {name: 'Raisa Kreek', email: 'raisa@medbridgeed.com'}
+      ];
+      console.log(emailArray);
+
+      //
       function processNames() {
-        console.log(this);
-        var array = this.split("\n");
-        console.log(array);
+        var array = this.value.split("\n");
+
+        array.forEach(function (givenName, index) {
+
+          givenName = givenName.trim();
+        	console.log(index, givenName);
+
+          // Get a new array with only the matches
+          var match = emailArray.filter(function (matchedName) {
+          	return matchedName === givenName;
+          });
+
+          console.log(match);
+          output.value = output.value + "\n" + "email";
+
+
+        });
+
       }
 
     </script>
