@@ -3,14 +3,37 @@
   <head>
     <title></title>
     <style>
+      html {
+        box-sizing: border-box;
+      }
+      *, *:before, *:after {
+        box-sizing: inherit;
+      }
+      body {
+        padding: 30px;
+        margin:0;
+        background:rgb(240,240,240);
+      }
       .main {
         display:flex;
-        width:66%;
+        width:100%;
       }
       .main textarea {
-        width:50%;
-        height:500px;
-        margin:20px;
+        display:block;
+        height:calc( 100vh - 60px );
+        padding:8px 10px;
+        line-height:20px;
+        resize:none;
+      }
+      .main textarea:first-child,
+      .main textarea:nth-child(2) {
+        margin-right:30px;
+      }
+      #input {
+        flex-grow:3;
+      }
+      #output, #output-deduped {
+        flex-grow:1;
       }
     </style>
   </head>
@@ -22,71 +45,161 @@
         Jeff Oster
       </textarea>
       <textarea id="output"></textarea>
+      <textarea id="output-deduped"></textarea>
     </div>
 
 
     <script>
 
+
+
       //
       var input = document.getElementById("input");
-      input.addEventListener("change", processNames, false);
+      input.addEventListener("change", processInput, false);
+      input.addEventListener("blur", processInput, false);
 
       //
       var output = document.getElementById("output");
+      var outputDeduped = document.getElementById("output-deduped");
 
-      var emailArray2 = {
-        'Brandon Suehiro': 'brandon.suehiro@medbridgeed.com',
-        'Brandon Suehiro2': 'brandon.suehiro@medbridgeed.com',
-      };
-      console.log(emailArray2);
 
       //
-      var emailArray = [
-        {name: 'Alexandra Klein', email: 'alexandra.klein@medbridgeed.com'},
-        {name: 'Brandon Suehiro', email: 'brandon.suehiro@medbridgeed.com'},
-        {name: 'Garrett Vincent', email: 'garrett.vincent@medbridgeed.com'},
-        {name: 'Heath Jones', email: 'heath.jones@medbridgeed.com'},
-        {name: 'Jamie Griffin', email: 'jamie.griffin@medbridgeed.com'},
-        {name: 'James Griffin', email: 'jamie.griffin@medbridgeed.com'},
-        {name: 'James Kupczak', email: 'james@medbridgeed.com'},
-        {name: 'Jeff Oster', email: 'jeff@medbridgeed.com'},
-        {name: 'Leah Shlyakhov', email: 'leah@medbridgeed.com'},
-        {name: 'Melanie Davis', email: 'melanie.davis@medbridgeed.com'},
-        {name: 'Nathan Whalen', email: 'nathan.whalen@medbridgeed.com'},
-        {name: 'Rachel Caldwell', email: 'rachel.caldwell@medbridgeed.com'},
-        {name: 'Ryan Nelson', email: 'ryan.nelson@medbridgeed.com'},
-        {name: 'Trevor Harris', email: 'trevor.harris@medbridgeed.com'},
-        {name: 'Vanessa Quarantello', email: 'vanessa.quarantello@medbridgeed.com'},
-        {name: 'Zach Francis', email: 'zach.francis@medbridgeed.com'},
-        {name: 'Zack Hill', email: 'zack.hill@medbridgeed.com'},
-        {name: 'Amy Carlson', email: 'amy@medbridgeed.com'},
-        {name: 'Amy King', email: 'amy.king@medbridgeed.com'},
-        {name: 'Cammi Powers', email: 'cammi@medbridgeed.com'},
-        {name: 'David Bradley', email: 'david.bradley@medbridgeed.com'},
-        {name: 'Erik Nielsen', email: 'erik.nielsen@medbridgeed.com'},
-        {name: 'Luis Perez', email: 'luis.perez@medbridgeed.com'},
-        {name: 'Raisa Kreek', email: 'raisa@medbridgeed.com'}
+      var dataArray = [
+        { input: 'Alexandra Klein', output: 'alexandra.klein@medbridgeed.com'},
+        { input: 'Andrew Edgerton', output: 'andrew.edgerton@medbridgeed.com'},
+        { input: 'Brandon Suehiro', output: 'brandon.suehiro@medbridgeed.com'},
+        { input: 'Cristina Gutierrez', output: 'cristina.gutierrez@medbridgeed.com'},
+        { input: 'Garrett Vincent', output: 'garrett.vincent@medbridgeed.com'},
+        { input: 'Heath Jones', output: 'heath.jones@medbridgeed.com'},
+        { input: 'Jamie Griffin', output: 'jamie.griffin@medbridgeed.com'},
+        { input: 'James Griffin', output: 'jamie.griffin@medbridgeed.com'},
+        { input: 'James Kupczak', output: 'james@medbridgeed.com'},
+        { input: 'Jeff Oster', output: 'jeff@medbridgeed.com'},
+        { input: 'Leah Shlyakhov', output: 'leah@medbridgeed.com'},
+        { input: 'Melanie Davis', output: 'melanie.davis@medbridgeed.com'},
+        { input: 'Nathan Whalen', output: 'nathan.whalen@medbridgeed.com'},
+        { input: 'Natalie Grant', output: 'nat@medbridgeed.com'},
+        { input: 'Nat Grant', output: 'nat@medbridgeed.com'},
+        { input: 'Rachel Caldwell', output: 'rachel.caldwell@medbridgeed.com'},
+        { input: 'Ryan Nelson', output: 'ryan.nelson@medbridgeed.com'},
+        { input: 'Trevor Harris', output: 'trevor.harris@medbridgeed.com'},
+        { input: 'Vanessa Quarantello', output: 'vanessa.quarantello@medbridgeed.com'},
+        { input: 'Zach Francis', output: 'zach.francis@medbridgeed.com'},
+        { input: 'Zack Hill', output: 'zack.hill@medbridgeed.com'},
+        { input: 'Amy Carlson', output: 'amy@medbridgeed.com'},
+        { input: 'Amy King', output: 'amy.king@medbridgeed.com'},
+        { input: 'Cammi Powers', output: 'cammi@medbridgeed.com'},
+        { input: 'David Bradley', output: 'david.bradley@medbridgeed.com'},
+        { input: 'Erik Nielsen', output: 'erik.nielsen@medbridgeed.com'},
+        { input: 'Luis Perez', output: 'luis.perez@medbridgeed.com'},
+        { input: 'Raisa Kreek', output: 'raisa@medbridgeed.com'},
+
+        { input: 'AL', output: 'Alabama' },
+        { input: 'AK', output: 'Alaska' },
+        { input: 'AZ', output: 'Arizona' },
+        { input: 'AR', output: 'Arkansas' },
+        { input: 'CA', output: 'California' },
+        { input: 'CO', output: 'Colorado' },
+        { input: 'CT', output: 'Connecticut' },
+        { input: 'DC', output: 'District of Columbia' },
+        { input: 'DE', output: 'Delaware' },
+        { input: 'FL', output: 'Florida' },
+        { input: 'GA', output: 'Georgia' },
+        { input: 'HI', output: 'Hawaii' },
+        { input: 'ID', output: 'Idaho' },
+        { input: 'IL', output: 'Illinois' },
+        { input: 'IN', output: 'Indiana' },
+        { input: 'IA', output: 'Iowa' },
+        { input: 'KS', output: 'Kansas' },
+        { input: 'KY', output: 'Kentucky' },
+        { input: 'LA', output: 'Louisiana' },
+        { input: 'ME', output: 'Maine' },
+        { input: 'MD', output: 'Maryland' },
+        { input: 'MA', output: 'Massachusetts' },
+        { input: 'MI', output: 'Michigan' },
+        { input: 'MN', output: 'Minnesota' },
+        { input: 'MS', output: 'Mississippi' },
+        { input: 'MO', output: 'Missouri' },
+        { input: 'MT', output: 'Montana' },
+        { input: 'NE', output: 'Nebraska' },
+        { input: 'NV', output: 'Nevada' },
+        { input: 'NH', output: 'New Hampshire' },
+        { input: 'NJ', output: 'New Jersey' },
+        { input: 'NM', output: 'New Mexico' },
+        { input: 'NY', output: 'New York' },
+        { input: 'NC', output: 'North Carolina' },
+        { input: 'ND', output: 'North Dakota' },
+        { input: 'OH', output: 'Ohio' },
+        { input: 'OK', output: 'Oklahoma' },
+        { input: 'OR', output: 'Oregon' },
+        { input: 'PA', output: 'Pennsylvania' },
+        { input: 'PR', output: 'Puerto Rico' },
+        { input: 'RI', output: 'Rhode Island' },
+        { input: 'SC', output: 'South Carolina' },
+        { input: 'SD', output: 'South Dakota' },
+        { input: 'TN', output: 'Tennessee' },
+        { input: 'TX', output: 'Texas' },
+        { input: 'UT', output: 'Utah' },
+        { input: 'VT', output: 'Vermont' },
+        { input: 'VA', output: 'Virginia' },
+        { input: 'WA', output: 'Washington' },
+        { input: 'WV', output: 'West Virginia' },
+        { input: 'WI', output: 'Wisconsin' },
+        { input: 'WY', output: 'Wyoming' }
       ];
-      console.log(emailArray);
 
-      //
-      function processNames() {
+      ////////////
+      ////////////
+      ////////////
+      function processInput() {
+
+        //clear out the output textarea
+        output.value = "";
+        outputDeduped.value = "";
+
         var array = this.value.split("\n");
 
-        array.forEach(function (givenName, index) {
+        console.log("Found " + array.length + " lines in input.");
+        array.forEach(function (givenInput, index) {
 
-          givenName = givenName.trim();
-        	console.log(index, givenName);
-
-          // Get a new array with only the matches
-          var match = emailArray.filter(function (matchedName) {
-          	return matchedName === givenName;
-          });
-
-          console.log(match);
-          output.value = output.value + "\n" + "email";
+          givenInput = givenInput.trim();
+        	console.log(index, givenInput);
 
 
+          // Check our array for this name
+          var matchingOutput = dataArray.filter(function (dataArray) { return dataArray.input === givenInput });
+          console.log(matchingOutput);
+
+          // If we got a result, output it
+          if ( matchingOutput[0] ) {
+            output.value = output.value + matchingOutput[0].output + "\n";
+
+          // otherwise, indicate that we didnt find anything
+          } else {
+            output.value = output.value + "#!No Match Found" + "\n";
+
+          }
+
+
+        });
+
+        // Dedupe the results and apply it to a second ouput container
+        var dedupedValue = output.value.split("\n");
+        console.log(dedupedValue);
+
+        dedupedValue = Array.from(new Set(dedupedValue)).sort();
+
+        console.log(dedupedValue.length)
+        dedupedValue.forEach(function (email, index) {
+
+          if ( email !== "" && email !== "!No Match Found" ) {
+            outputDeduped.value = outputDeduped.value + email;
+
+            // Don't add the comma at the end if this was the last one
+            if ( dedupedValue.length - index !== 1 ) {
+               outputDeduped.value = outputDeduped.value + ", ";
+            }
+          }
         });
 
       }
