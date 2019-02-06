@@ -2,6 +2,7 @@
 <html>
   <head>
     <title></title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <style>
       html {
         box-sizing: border-box;
@@ -10,24 +11,31 @@
         box-sizing: inherit;
       }
       body {
-        padding: 30px;
         margin:0;
         background:rgb(240,240,240);
+        font-family: sans-serif;
       }
       .main {
         display:flex;
         width:100%;
+        flex-grow:1;
       }
       .main textarea {
         display:block;
-        height:calc( 100vh - 60px );
+        height:auto;
         padding:8px 10px;
         line-height:20px;
         resize:none;
+        border-radius:3px;
+        border:none;
+        font-size:10px;
+        line-height:16px;
+        overflow-y:scroll;
+        box-shadow:0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
       }
       .main textarea:first-child,
       .main textarea:nth-child(2) {
-        margin-right:30px;
+        margin-right:15px;
       }
       #input {
         flex-grow:3;
@@ -35,17 +43,42 @@
       #output, #output-deduped {
         flex-grow:1;
       }
+
+      #nav {
+        display: flex;
+        margin-bottom:20px;
+      }
+      #nav .btn {padding:14px 10px; margin-right:10px; cursor:pointer; background:#687085; color:#fff; border-radius:3px;}
+      #nav .btn.active {background:#0d51ff;}
+      #nav .btn:hover {background:#2561f8;}
+
+      #main-container {
+        display: flex;
+        flex-direction:column;
+
+        padding:30px;
+        height:100vh;
+      }
     </style>
   </head>
   <body>
 
-    <div class="main">
-      <textarea id="input">
-        James Kupczak
-        Jeff Oster
-      </textarea>
-      <textarea id="output"></textarea>
-      <textarea id="output-deduped"></textarea>
+    <div id="main-container">
+
+      <div id="nav">
+        <div class="btn">State Codes</div>
+        <div class="btn">State Names</div>
+      </div>
+
+      <div class="main">
+        <textarea id="input">
+          James Kupczak
+          Jeff Oster
+        </textarea>
+        <textarea id="output"></textarea>
+        <textarea id="output-deduped"></textarea>
+      </div>
+
     </div>
 
 
@@ -145,8 +178,133 @@
         { input: 'WA', output: 'Washington' },
         { input: 'WV', output: 'West Virginia' },
         { input: 'WI', output: 'Wisconsin' },
-        { input: 'WY', output: 'Wyoming' }
+        { input: 'WY', output: 'Wyoming' },
+
+        { output: 'AL', input: 'Alabama' },
+              { output: 'AK', input: 'Alaska' },
+              { output: 'AZ', input: 'Arizona' },
+              { output: 'AR', input: 'Arkansas' },
+              { output: 'CA', input: 'California' },
+              { output: 'CO', input: 'Colorado' },
+              { output: 'CT', input: 'Connecticut' },
+              { output: 'DC', input: 'District of Columbia' },
+              { output: 'DE', input: 'Delaware' },
+              { output: 'FL', input: 'Florida' },
+              { output: 'GA', input: 'Georgia' },
+              { output: 'HI', input: 'Hawaii' },
+              { output: 'ID', input: 'Idaho' },
+              { output: 'IL', input: 'Illinois' },
+              { output: 'IN', input: 'Indiana' },
+              { output: 'IA', input: 'Iowa' },
+              { output: 'KS', input: 'Kansas' },
+              { output: 'KY', input: 'Kentucky' },
+              { output: 'LA', input: 'Louisiana' },
+              { output: 'ME', input: 'Maine' },
+              { output: 'MD', input: 'Maryland' },
+              { output: 'MA', input: 'Massachusetts' },
+              { output: 'MI', input: 'Michigan' },
+              { output: 'MN', input: 'Minnesota' },
+              { output: 'MS', input: 'Mississippi' },
+              { output: 'MO', input: 'Missouri' },
+              { output: 'MT', input: 'Montana' },
+              { output: 'NE', input: 'Nebraska' },
+              { output: 'NV', input: 'Nevada' },
+              { output: 'NH', input: 'New Hampshire' },
+              { output: 'NJ', input: 'New Jersey' },
+              { output: 'NM', input: 'New Mexico' },
+              { output: 'NY', input: 'New York' },
+              { output: 'NC', input: 'North Carolina' },
+              { output: 'ND', input: 'North Dakota' },
+              { output: 'OH', input: 'Ohio' },
+              { output: 'OK', input: 'Oklahoma' },
+              { output: 'OR', input: 'Oregon' },
+              { output: 'PA', input: 'Pennsylvania' },
+              { output: 'PR', input: 'Puerto Rico' },
+              { output: 'RI', input: 'Rhode Island' },
+              { output: 'SC', input: 'South Carolina' },
+              { output: 'SD', input: 'South Dakota' },
+              { output: 'TN', input: 'Tennessee' },
+              { output: 'TX', input: 'Texas' },
+              { output: 'UT', input: 'Utah' },
+              { output: 'VT', input: 'Vermont' },
+              { output: 'VA', input: 'Virginia' },
+              { output: 'WA', input: 'Washington' },
+              { output: 'WV', input: 'West Virginia' },
+              { output: 'WI', input: 'Wisconsin' },
+              { output: 'WY', input: 'Wyoming' },
+
+              { output: "Alberta", input: "AB" },
+              { output: "British Columbia", input: "BC" },
+              { output: "Manitoba", input: "MB" },
+              { output: "New Brunswick", input: "NB" },
+              { output: "Newfoundland and Labrador", input: "NL" },
+              { output: "Northwest Territories", input: "NT" },
+              { output: "Nova Scotia", input: "NS" },
+              { output: "Nunavut", input: "NU" },
+              { output: "Ontario", input: "ON" },
+              { output: "Prince Edward Island", input: "PE" },
+              { output: "Quebec", input: "QC" },
+              { output: "Saskatchewan", input: "SK" },
+              { output: "Yukon", input: "YT" }
       ];
+
+
+
+      var states = [{ short: 'AL', long: 'Alabama' },
+      { short: 'AK', long: 'Alaska' },
+      { short: 'AZ', long: 'Arizona' },
+      { short: 'AR', long: 'Arkansas' },
+      { short: 'CA', long: 'California' },
+      { short: 'CO', long: 'Colorado' },
+      { short: 'CT', long: 'Connecticut' },
+      { short: 'DC', long: 'District of Columbia' },
+      { short: 'DE', long: 'Delaware' },
+      { short: 'FL', long: 'Florida' },
+      { short: 'GA', long: 'Georgia' },
+      { short: 'HI', long: 'Hawaii' },
+      { short: 'ID', long: 'Idaho' },
+      { short: 'IL', long: 'Illinois' },
+      { short: 'IN', long: 'Indiana' },
+      { short: 'IA', long: 'Iowa' },
+      { short: 'KS', long: 'Kansas' },
+      { short: 'KY', long: 'Kentucky' },
+      { short: 'LA', long: 'Louisiana' },
+      { short: 'ME', long: 'Maine' },
+      { short: 'MD', long: 'Maryland' },
+      { short: 'MA', long: 'Massachusetts' },
+      { short: 'MI', long: 'Michigan' },
+      { short: 'MN', long: 'Minnesota' },
+      { short: 'MS', long: 'Mississippi' },
+      { short: 'MO', long: 'Missouri' },
+      { short: 'MT', long: 'Montana' },
+      { short: 'NE', long: 'Nebraska' },
+      { short: 'NV', long: 'Nevada' },
+      { short: 'NH', long: 'New Hampshire' },
+      { short: 'NJ', long: 'New Jersey' },
+      { short: 'NM', long: 'New Mexico' },
+      { short: 'NY', long: 'New York' },
+      { short: 'NC', long: 'North Carolina' },
+      { short: 'ND', long: 'North Dakota' },
+      { short: 'OH', long: 'Ohio' },
+      { short: 'OK', long: 'Oklahoma' },
+      { short: 'OR', long: 'Oregon' },
+      { short: 'PA', long: 'Pennsylvania' },
+      { short: 'PR', long: 'Puerto Rico' },
+      { short: 'RI', long: 'Rhode Island' },
+      { short: 'SC', long: 'South Carolina' },
+      { short: 'SD', long: 'South Dakota' },
+      { short: 'TN', long: 'Tennessee' },
+      { short: 'TX', long: 'Texas' },
+      { short: 'UT', long: 'Utah' },
+      { short: 'VT', long: 'Vermont' },
+      { short: 'VA', long: 'Virginia' },
+      { short: 'WA', long: 'Washington' },
+      { short: 'WV', long: 'West Virginia' },
+      { short: 'WI', long: 'Wisconsin' },
+      { short: 'WY', long: 'Wyoming' }
+      ];
+
+      // console.log(states);
 
       ////////////
       ////////////
@@ -159,24 +317,28 @@
 
         var array = this.value.split("\n");
 
-        console.log("Found " + array.length + " lines in input.");
+        // console.log("Found " + array.length + " lines in input.");
         array.forEach(function (givenInput, index) {
 
           givenInput = givenInput.trim();
-        	console.log(index, givenInput);
+        	// console.log(index, givenInput);
 
 
           // Check our array for this name
-          var matchingOutput = dataArray.filter(function (dataArray) { return dataArray.input === givenInput });
-          console.log(matchingOutput);
+          var matchingOutput = dataArray.filter(function (dataArray) { return dataArray.input.toLowerCase() === givenInput.toLowerCase() });
+          // console.log(matchingOutput);
 
           // If we got a result, output it
           if ( matchingOutput[0] ) {
             output.value = output.value + matchingOutput[0].output + "\n";
 
           // otherwise, indicate that we didnt find anything
-          } else {
-            output.value = output.value + "#!No Match Found" + "\n";
+          }
+          else if ( givenInput.length === 0 ) {
+            output.value = output.value + "\n";
+          }
+          else {
+            output.value = output.value + "#!No Match Found (" + givenInput + ")\n";
 
           }
 
@@ -185,11 +347,11 @@
 
         // Dedupe the results and apply it to a second ouput container
         var dedupedValue = output.value.split("\n");
-        console.log(dedupedValue);
+        // console.log(dedupedValue);
 
         dedupedValue = Array.from(new Set(dedupedValue)).sort();
 
-        console.log(dedupedValue.length)
+        // console.log(dedupedValue.length)
         dedupedValue.forEach(function (email, index) {
 
           if ( email !== "" && email !== "!No Match Found" ) {
