@@ -12,21 +12,34 @@
       }
       body {
         margin:0;
-        background:rgb(240,240,240);
+        background: #18191c;
         font-family: sans-serif;
       }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        background-color: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+      	border-radius: 0;
+      	background-color: rgba(255,255,255,0.1);
+      }
+
       .main {
         display:flex;
         width:100%;
         flex-grow:1;
       }
       .main textarea {
+        background: #2d2f34;
+        color:#bbbec9;
         display:block;
         height:auto;
         padding:8px 10px;
         line-height:20px;
         resize:none;
         border-radius:3px;
+        overflow: hidden;
         border:none;
         font-size:10px;
         line-height:16px;
@@ -66,15 +79,21 @@
     <div id="main-container">
 
       <div id="nav">
-        <div class="btn">State Codes</div>
-        <div class="btn">State Names</div>
+        <div data-action="convert-to-state-codes" class="btn">State Codes</div>
+        <div data-action="convert-to-state-names" class="btn">State Names</div>
+        <div data-action="convert-to-emails" class="btn">Names to Emails</div>
+        <div data-action="convert-to-names" class="btn">Emails to Names</div>
+        <div data-action="label-duplicates" class="btn">Label Duplicates</div>
       </div>
 
       <div class="main">
-        <textarea id="input">
-          James Kupczak
-          Jeff Oster
-        </textarea>
+        <textarea id="input">James Kupczak
+Jeff Oster
+Jeff Oster
+Testing Testerson
+Jeff Oster
+Testing Testerson
+Nicole Pixton</textarea>
         <textarea id="output"></textarea>
         <textarea id="output-deduped"></textarea>
       </div>
@@ -84,19 +103,191 @@
 
     <script>
 
-
-
       //
       var input = document.getElementById("input");
-      input.addEventListener("change", processInput, false);
-      input.addEventListener("blur", processInput, false);
 
       //
       var output = document.getElementById("output");
       var outputDeduped = document.getElementById("output-deduped");
 
 
-      //
+
+      //////////////////////////////
+      //////////////////////////////
+      //////////////////////////////
+      document.getElementById("nav").addEventListener("click", function() {
+
+        console.log(event.target.dataset.action);
+
+        // Label Duplicates
+        if ( event.target.dataset.action === "label-duplicates" ) {
+          labelDuplicates();
+        }
+
+        // Convert to State Codes
+        if ( event.target.dataset.action === "convert-to-state-codes" ) {
+          convertStates("short");
+        }
+        // Convert to State Names
+        if ( event.target.dataset.action === "convert-to-state-names" ) {
+          convertStates("long");
+        }
+
+      }, false);
+
+
+
+      //////////////////////////////
+      //////////////////////////////
+      //////////////////////////////
+      var labelDuplicates = function() {
+
+        // ref
+        // https://coderwall.com/p/prvrnw/remove-items-from-array-while-iterating-over-it
+
+        console.time('processB');
+
+        var array = getInput();
+        var outputArray = [];
+
+        for (i = data.length - 1; i >= 0; --i) {
+
+          // console.log(i, data.length, data[i] );
+
+          var matches = data.filter(function (match) {
+            return match === data[i];
+          });
+
+          // console.log("matches", matches);
+
+          if ( matches.length > 1 ) {
+            outputArray.push("duplicate");
+          } else {
+            outputArray.push("unique");
+            data.splice(i, 1); // Remove even numbers
+          }
+
+        }
+
+        ////////
+        outputArrayAsLines(outputArray.reverse());
+
+        console.timeEnd('processB');
+      }
+
+
+
+      ////////////////////////////////
+      ////////////////////////////////
+      ////////////////////////////////
+      var processA = function() {
+
+        console.time('processA');
+
+        // console.log("processA beginning");
+
+        var data = input.value.split("\n");
+        var dataShort = input.value.split("\n");
+
+        var outputArray = [];
+
+        data.forEach(function (item, index) {
+
+          var matches = dataShort.filter(function (hmm) {
+            return item === hmm;
+          });
+
+          if ( matches.length > 1 ) {
+            outputArray.push("duplicate");
+          } else {
+            outputArray.push("unique");
+          }
+
+        });
+
+        ////////
+        outputArrayAsLines(outputArray);
+
+        console.timeEnd('processA');
+      };
+
+
+
+      /////////////////
+      /////////////////
+      /////////////////
+      var outputArrayAsLines = function(array) {
+
+        var outputString = "";
+        array.forEach(function (item, index) {
+          outputString += item;
+          // Only add a line break if this isn't the last item
+          if ( (index + 1) < array.length ) {
+            outputString += "\n";
+          }
+        });
+
+        output.value = outputString;
+
+      }
+
+
+
+      //////////////////////////////
+      //////////////////////////////
+      //////////////////////////////
+      var getInput = function() {
+
+        return data = input.value.split("\n");
+
+      }
+
+
+
+      //////////////////////////////
+      //////////////////////////////
+      //////////////////////////////
+      var convertStates = function(type) {
+
+        var array = getInput();
+        var outputArray = [];
+
+
+        array.forEach(function (item, index) {
+
+          if ( type === "long" ) {
+
+            // Check our array for this name
+            var matchingOutput = states.filter(function (states) {
+
+              if ( states.short.toLowerCase() === item.toLowerCase() ) {
+                return states.long;
+              }
+            });
+
+            // If we got a result, output it
+            if ( matchingOutput[0] ) {
+              outputArray.push(matchingOutput[0].long);
+            }
+            // otherwise, indicate that we didnt find anything
+            else {
+              outputArray.push("#!No Match Found");
+
+            }
+
+          }
+
+        });
+
+
+        outputArrayAsLines(outputArray);
+
+      }
+
+
+      //////////////////////////////
+      //////////////////////////////
+      //////////////////////////////
       var dataArray = [
         { input: 'Alexandra Klein', output: 'alexandra.klein@medbridgeed.com'},
         { input: 'Andrew Edgerton', output: 'andrew.edgerton@medbridgeed.com'},
@@ -250,61 +441,62 @@
 
 
 
-      var states = [{ short: 'AL', long: 'Alabama' },
-      { short: 'AK', long: 'Alaska' },
-      { short: 'AZ', long: 'Arizona' },
-      { short: 'AR', long: 'Arkansas' },
-      { short: 'CA', long: 'California' },
-      { short: 'CO', long: 'Colorado' },
-      { short: 'CT', long: 'Connecticut' },
-      { short: 'DC', long: 'District of Columbia' },
-      { short: 'DE', long: 'Delaware' },
-      { short: 'FL', long: 'Florida' },
-      { short: 'GA', long: 'Georgia' },
-      { short: 'HI', long: 'Hawaii' },
-      { short: 'ID', long: 'Idaho' },
-      { short: 'IL', long: 'Illinois' },
-      { short: 'IN', long: 'Indiana' },
-      { short: 'IA', long: 'Iowa' },
-      { short: 'KS', long: 'Kansas' },
-      { short: 'KY', long: 'Kentucky' },
-      { short: 'LA', long: 'Louisiana' },
-      { short: 'ME', long: 'Maine' },
-      { short: 'MD', long: 'Maryland' },
-      { short: 'MA', long: 'Massachusetts' },
-      { short: 'MI', long: 'Michigan' },
-      { short: 'MN', long: 'Minnesota' },
-      { short: 'MS', long: 'Mississippi' },
-      { short: 'MO', long: 'Missouri' },
-      { short: 'MT', long: 'Montana' },
-      { short: 'NE', long: 'Nebraska' },
-      { short: 'NV', long: 'Nevada' },
-      { short: 'NH', long: 'New Hampshire' },
-      { short: 'NJ', long: 'New Jersey' },
-      { short: 'NM', long: 'New Mexico' },
-      { short: 'NY', long: 'New York' },
-      { short: 'NC', long: 'North Carolina' },
-      { short: 'ND', long: 'North Dakota' },
-      { short: 'OH', long: 'Ohio' },
-      { short: 'OK', long: 'Oklahoma' },
-      { short: 'OR', long: 'Oregon' },
-      { short: 'PA', long: 'Pennsylvania' },
-      { short: 'PR', long: 'Puerto Rico' },
-      { short: 'RI', long: 'Rhode Island' },
-      { short: 'SC', long: 'South Carolina' },
-      { short: 'SD', long: 'South Dakota' },
-      { short: 'TN', long: 'Tennessee' },
-      { short: 'TX', long: 'Texas' },
-      { short: 'UT', long: 'Utah' },
-      { short: 'VT', long: 'Vermont' },
-      { short: 'VA', long: 'Virginia' },
-      { short: 'WA', long: 'Washington' },
-      { short: 'WV', long: 'West Virginia' },
-      { short: 'WI', long: 'Wisconsin' },
-      { short: 'WY', long: 'Wyoming' }
+      var states = [
+        { short: 'AL', long: 'Alabama' },
+        { short: 'AK', long: 'Alaska' },
+        { short: 'AZ', long: 'Arizona' },
+        { short: 'AR', long: 'Arkansas' },
+        { short: 'CA', long: 'California' },
+        { short: 'CO', long: 'Colorado' },
+        { short: 'CT', long: 'Connecticut' },
+        { short: 'DC', long: 'District of Columbia' },
+        { short: 'DE', long: 'Delaware' },
+        { short: 'FL', long: 'Florida' },
+        { short: 'GA', long: 'Georgia' },
+        { short: 'HI', long: 'Hawaii' },
+        { short: 'ID', long: 'Idaho' },
+        { short: 'IL', long: 'Illinois' },
+        { short: 'IN', long: 'Indiana' },
+        { short: 'IA', long: 'Iowa' },
+        { short: 'KS', long: 'Kansas' },
+        { short: 'KY', long: 'Kentucky' },
+        { short: 'LA', long: 'Louisiana' },
+        { short: 'ME', long: 'Maine' },
+        { short: 'MD', long: 'Maryland' },
+        { short: 'MA', long: 'Massachusetts' },
+        { short: 'MI', long: 'Michigan' },
+        { short: 'MN', long: 'Minnesota' },
+        { short: 'MS', long: 'Mississippi' },
+        { short: 'MO', long: 'Missouri' },
+        { short: 'MT', long: 'Montana' },
+        { short: 'NE', long: 'Nebraska' },
+        { short: 'NV', long: 'Nevada' },
+        { short: 'NH', long: 'New Hampshire' },
+        { short: 'NJ', long: 'New Jersey' },
+        { short: 'NM', long: 'New Mexico' },
+        { short: 'NY', long: 'New York' },
+        { short: 'NC', long: 'North Carolina' },
+        { short: 'ND', long: 'North Dakota' },
+        { short: 'OH', long: 'Ohio' },
+        { short: 'OK', long: 'Oklahoma' },
+        { short: 'OR', long: 'Oregon' },
+        { short: 'PA', long: 'Pennsylvania' },
+        { short: 'PR', long: 'Puerto Rico' },
+        { short: 'RI', long: 'Rhode Island' },
+        { short: 'SC', long: 'South Carolina' },
+        { short: 'SD', long: 'South Dakota' },
+        { short: 'TN', long: 'Tennessee' },
+        { short: 'TX', long: 'Texas' },
+        { short: 'UT', long: 'Utah' },
+        { short: 'VT', long: 'Vermont' },
+        { short: 'VA', long: 'Virginia' },
+        { short: 'WA', long: 'Washington' },
+        { short: 'WV', long: 'West Virginia' },
+        { short: 'WI', long: 'Wisconsin' },
+        { short: 'WY', long: 'Wyoming' }
       ];
 
-      // console.log(states);
+
 
       ////////////
       ////////////
