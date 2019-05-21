@@ -33,6 +33,8 @@
       text-align:center;
       font-weight:bold;
       flex-grow: inherit;
+      height:100%;
+      vertical-align: middle;
     }
     .calculator {
       display: flex;
@@ -48,12 +50,28 @@
       height:15%;
       justify-content: space-evenly;
     }
-    .header-row {
-      height:10%;
+
+    .row > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
     .row .day-name {
       text-align:center;
+      font-size:48px;
     }
+
+    .header-row {
+      height:10%;
+      color:#a7b1c5;
+      background:#0e0f11 !important;
+    }
+
+    .header-row .day-name {
+      font-size:20px !important;
+    }
+
     .row > div:first-child {
       min-width: 20%;
       width:20%;
@@ -61,6 +79,15 @@
     }
     .row:nth-child(odd) {
       background:#262d3a;
+    }
+
+    .row > div:nth-child(2) {
+      border-right:2px solid rgba(255,255,255,0.1);
+      border-left:2px solid rgba(255,255,255,0.1);
+    }
+
+    .row > div:nth-child(2), .row > div:nth-child(3) {
+      padding:0 30px;
     }
 
     #total {
