@@ -18,26 +18,67 @@
   <style>
     body {
       color: #dee3ed;
-      background:#161a23;
+      background:#fff;
       font-size:24px;
       font-family: Roboto, Arial, sans-serif;
+      padding:0;
+      margin:0;
     }
     .main-container {
 
+    }
 
+    div {
+      text-align:center;
+      font-weight:bold
+    }
+    .calculator {
+      display: flex;
+      height:100vh;
+      background:#161a23;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+    .row {
+      display:flex;
+      flex-grow: 1;
+      align-items: center;
+      min-height:14.2857142%;
+    }
+    .row .day-name {
+      width:20%;
+      text-align:center;
+    }
+    .row > div:nth-child(2), .row > div:nth-child(3) {
+      width:40%;
+    }
+    .row:nth-child(odd) {
+      background:#262d3a;
+    }
+
+    #total {
+      background: #4dba6e;
+      color:#fff;
+      font-weight:bold;
+      text-align:center;
+      font-size:64px;
+      line-height: 1;
+      align-items: center;
+      justify-content: center;
     }
 
     table {
       border-collapse: collapse;
       width:100%;
     }
+    th {
+      padding:30px;
+    }
     td {
       padding:30px 10px;
       text-align:center;
     }
-    tr:nth-child(even) td {
-      background:#262d3a;
-    }
+
     .cost-trigger {
       font-size:34px;
       font-weight: bold;
@@ -47,6 +88,7 @@
       text-align:center;
       line-height:50px;
       cursor:pointer;
+      margin:auto;
     }
     .cost-trigger:hover {
       background:#6c8bc4;
@@ -58,59 +100,65 @@
 
   <div class="main-container">
 
-    <table>
-      <tr>
-        <th>Day</th>
-        <th>AM</th>
-        <th>PM</th>
-      </tr>
-      <tr>
-        <td>M</td>
-        <td>
+    <div class="calculator">
+      <div class="row">
+        <div class="day-name">Day</div>
+        <div>AM</div>
+        <div>PM</div>
+      </div>
+
+      <div class="row">
+        <div class="day-name">M</div>
+        <div>
           <div class="cost-trigger" data-cost="monday-am">+</div>
-        </td>
-        <td>
+        </div>
+        <div>
           <div class="cost-trigger" data-cost="monday-pm">+</div>
-        </td>
-      </tr>
-      <tr>
-        <td>T</td>
-        <td>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="day-name">T</div>
+        <div>
           <div class="cost-trigger" data-cost="tuesday-am">+</div>
-        </td>
-        <td>
+        </div>
+        <div>
           <div class="cost-trigger" data-cost="tuesday-pm">+</div>
-        </td>
-      </tr>
-      <tr>
-        <td>W</td>
-        <td>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="day-name">W</div>
+        <div>
           <div class="cost-trigger" data-cost="wednesday-am">+</div>
-        </td>
-        <td>
+        </div>
+        <div>
           <div class="cost-trigger" data-cost="wednesday-pm">+</div>
-        </td>
-      </tr>
-      <tr>
-        <td>T</td>
-        <td>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="day-name">T</div>
+        <div>
           <div class="cost-trigger" data-cost="thursday-am">+</div>
-        </td>
-        <td>
+        </div>
+        <div>
           <div class="cost-trigger" data-cost="thursday-pm">+</div>
-        </td>
-      </tr>
-      <tr>
-        <td>F</td>
-        <td>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="day-name">F</div>
+        <div>
           <div class="cost-trigger" data-cost="friday-am">+</div>
-        </td>
-        <td>
+        </div>
+        <div>
           <div class="cost-trigger" data-cost="friday-pm">+</div>
-        </td>
-      </tr>
-    </table>
-    <div id="total"></div>
+        </div>
+      </div>
+
+      <div class="row" id="total"><span>$</span><span id="dollars">0.00</div></div>
+    </div>
 
 
   </div>
