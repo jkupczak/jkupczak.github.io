@@ -23,6 +23,7 @@
       font-family: Roboto, Arial, sans-serif;
       padding:0;
       margin:0;
+      overflow: hidden;
     }
     .main-container {
 
@@ -30,27 +31,33 @@
 
     div {
       text-align:center;
-      font-weight:bold
+      font-weight:bold;
+      flex-grow: inherit;
     }
     .calculator {
       display: flex;
       height:100vh;
       background:#161a23;
       flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: stretch;
     }
     .row {
       display:flex;
       flex-grow: 1;
       align-items: center;
-      min-height:14.2857142%;
+      height:15%;
+      justify-content: space-evenly;
+    }
+    .header-row {
+      height:10%;
     }
     .row .day-name {
-      width:20%;
       text-align:center;
     }
-    .row > div:nth-child(2), .row > div:nth-child(3) {
-      width:40%;
+    .row > div:first-child {
+      min-width: 20%;
+      width:20%;
+      max-width:20%;
     }
     .row:nth-child(odd) {
       background:#262d3a;
@@ -80,13 +87,13 @@
     }
 
     .cost-trigger {
-      font-size:34px;
+      font-size:43px;
       font-weight: bold;
-      width:100px; height:50px;
+      width:100px; height:60px;
       border-radius:50px;
       background: #496598;
       text-align:center;
-      line-height:50px;
+      line-height:60px;
       cursor:pointer;
       margin:auto;
     }
@@ -101,7 +108,7 @@
   <div class="main-container">
 
     <div class="calculator">
-      <div class="row">
+      <div class="row header-row">
         <div class="day-name">Day</div>
         <div>AM</div>
         <div>PM</div>
