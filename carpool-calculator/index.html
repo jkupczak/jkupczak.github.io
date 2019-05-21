@@ -1,0 +1,120 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Carpool Calculator</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+
+  <style>
+    body {
+      color: #dee3ed;
+      background:#161a23;
+      font-size:24px;
+      font-family: Roboto, Arial, sans-serif;
+    }
+    .main-container {
+
+
+    }
+
+    table {
+      border-collapse: collapse;
+      width:100%;
+    }
+    td {
+      padding:30px 10px;
+      text-align:center;
+    }
+    tr:nth-child(even) td {
+      background:#262d3a;
+    }
+    .cost-trigger {
+      font-size:34px;
+      font-weight: bold;
+      width:100px; height:50px;
+      border-radius:50px;
+      background: #496598;
+      text-align:center;
+      line-height:50px;
+      cursor:pointer;
+    }
+    .cost-trigger:hover {
+      background:#6c8bc4;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="main-container">
+
+    <table>
+      <tr>
+        <th>Day</th>
+        <th>AM</th>
+        <th>PM</th>
+      </tr>
+      <tr>
+        <td>M</td>
+        <td>
+          <div class="cost-trigger" data-cost="monday-am">+</div>
+        </td>
+        <td>
+          <div class="cost-trigger" data-cost="monday-pm">+</div>
+        </td>
+      </tr>
+      <tr>
+        <td>T</td>
+        <td>
+          <div class="cost-trigger" data-cost="tuesday-am">+</div>
+        </td>
+        <td>
+          <div class="cost-trigger" data-cost="tuesday-pm">+</div>
+        </td>
+      </tr>
+      <tr>
+        <td>W</td>
+        <td>
+          <div class="cost-trigger" data-cost="wednesday-am">+</div>
+        </td>
+        <td>
+          <div class="cost-trigger" data-cost="wednesday-pm">+</div>
+        </td>
+      </tr>
+      <tr>
+        <td>T</td>
+        <td>
+          <div class="cost-trigger" data-cost="thursday-am">+</div>
+        </td>
+        <td>
+          <div class="cost-trigger" data-cost="thursday-pm">+</div>
+        </td>
+      </tr>
+      <tr>
+        <td>F</td>
+        <td>
+          <div class="cost-trigger" data-cost="friday-am">+</div>
+        </td>
+        <td>
+          <div class="cost-trigger" data-cost="friday-pm">+</div>
+        </td>
+      </tr>
+    </table>
+    <div id="total"></div>
+
+
+  </div>
+
+</body>
+
+</html>
