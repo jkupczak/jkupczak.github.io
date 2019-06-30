@@ -23,30 +23,75 @@ if ('serviceWorker' in navigator) {
 /////////////////////
 //
 //
+//  Update All Visuals
+//
+//
+/////////////////////
+
+var updateAllVisuals = function() {
+
+
+
+}
+
+
+/////////////////////
+//
+//
 //   Carpool Calculator
 //
 //
 /////////////////////
 
-var days = {
-  sunAm: 0,
-  sunPm: 0,
-  monAm: 0,
-  monPm: 0,
-  tueAm: 0,
-  tuePm: 0,
-  wedAm: 0,
-  wedPm: 0,
-  thuAm: 0,
-  thuPm: 0,
-  friAm: 0,
-  friPm: 0,
-  satAm: 0,
-  satPm: 0,
+// Get or create the days object
+var days = JSON.parse(localStorage.getItem('days'));
+console.log(days);
+
+if ( days ) {
+
+  updateAllVisuals();
+
 }
 
-var increments = 0.50;
+else {
 
+  var days = {
+    sunAm: 0,
+    sunPm: 0,
+    monAm: 0,
+    monPm: 0,
+    tueAm: 0,
+    tuePm: 0,
+    wedAm: 0,
+    wedPm: 0,
+    thuAm: 0,
+    thuPm: 0,
+    friAm: 0,
+    friPm: 0,
+    satAm: 0,
+    satPm: 0,
+  }
+
+}
+
+// Get or create the settings object
+var settings = JSON.parse ( localStorage.getItem('settings') );
+if ( !settings ) {
+  var settings = {
+    incrementValue: 0.50
+  }
+  localStorage.setItem('settings', JSON.stringify(settings));
+}
+
+
+
+/////////////////////
+//
+//
+//   XXX
+//
+//
+/////////////////////
 document.getElementById("calculator").addEventListener("click", function() {
   if ( event.target.dataset.trip ) {
 
@@ -62,9 +107,11 @@ document.getElementById("calculator").addEventListener("click", function() {
       trip.innerText = "$0.00";
     }
     else {
-      days[day] = days[day] + increments;
+      days[day] = days[day] + settings.incrementValue;
       trip.innerText = roundAsDollars(days[day]);
     }
+    //
+    updateStorage();
 
     // Calculate and Update Total
     calcTotal(days);
@@ -75,6 +122,8 @@ document.getElementById("calculator").addEventListener("click", function() {
 
 
 var calcTotal = function(obj) {
+
+  console.log();
 
   var total = Object.keys(obj).reduce((sum,key)=>sum+parseFloat(obj[key]||0),0);
 
@@ -105,9 +154,10 @@ var reset = function() {
       days[key] = 0;
   	}
   }
+  updateStorage();
   console.groupEnd();
 
-
+  // Reset visuals
   document.getElementById("dollars").innerText = "$0.00";
 
   let trips = document.querySelectorAll(".cost-trigger");
@@ -130,6 +180,22 @@ var copyTotal = function() {
 
 document.getElementById("total").addEventListener("touchstart", copyTotal, false);
 document.getElementById("total").addEventListener("click", copyTotal, false);
+
+
+
+/////////////////////
+//
+//
+//   Update Storage
+//
+//
+/////////////////////
+
+var updateStorage = function() {
+
+  localStorage.setItem('days', JSON.stringify(days));
+
+}
 
 
 
