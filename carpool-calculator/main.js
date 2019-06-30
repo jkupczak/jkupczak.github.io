@@ -1,3 +1,33 @@
+/////////////////////
+//
+//
+//   PWA Service Worker
+//
+//
+/////////////////////
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(reg => {
+        console.log('Service worker registered! 😎', reg);
+      })
+      .catch(err => {
+        console.log('😥 Service worker registration failed: ', err);
+      });
+  });
+}
+
+
+
+/////////////////////
+//
+//
+//   Carpool Calculator
+//
+//
+/////////////////////
+
 var days = {
   sunAm: 0,
   sunPm: 0,
@@ -28,9 +58,13 @@ document.getElementById("calculator").addEventListener("click", function() {
     console.log(days);
 
     // Calculate and Update day
-    days[day] = days[day] + increments;
-
-    trip.innerText = roundAsDollars(days[day]);
+    if ( trip.innerText === "+" ) {
+      trip.innerText = "$0.00";
+    }
+    else {
+      days[day] = days[day] + increments;
+      trip.innerText = roundAsDollars(days[day]);
+    }
 
     // Calculate and Update Total
     calcTotal(days);
