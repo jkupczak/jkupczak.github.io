@@ -14,6 +14,8 @@ const cacheName = 'cache-v1';
 const precacheResources = [
   '/',
   'index.html',
+  'normalize.css',
+  'main.css',
   'main.js'
 ];
 
