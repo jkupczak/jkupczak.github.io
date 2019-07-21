@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>QA Checklist</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="checklist.css">
+</head>
+<body>
+
+  <div class="main-container">
+
+    <div id="qa-checklist" class="checklist-wrapper">
+
+      <div id="spinner" class="spinner" data-options="large blue" role="progressbar" aria-valuetext="Loading…"></div>
+
+      <header id="checklistHeader" class="checklist-header" style="display: none">
+        <div id="progress" class="checklist-progress">
+          9 checks remain
+        </div>
+        <div class="checklist-progress-bar">
+          <div id="progressBar"></div>
+        </div>
+        <div class="resolve-all">
+          <span>Skip All</span>&nbsp;&nbsp;&nbsp;
+          <span>Approve All</span>
+        </div>
+      </header>
+
+      <div id="checklist" class="checklist-items" style="display: none">
+        <div class="list-item unconfirmed" data-item="audience">
+          <div class="list-item-wrapper">
+            <div class="item-title">Audience</div>
+            <div class="item-confirm">
+              <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+            </div>
+            <div class="item-options">
+              <div class="item-skipped">Skip</div>
+              <div class="item-approved">
+                <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-item unconfirmed" data-item="content">
+          <div class="list-item-wrapper">
+            <div class="item-title">Content</div>
+            <div class="item-confirm">
+              <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+            </div>
+            <div class="item-options">
+              <div class="item-skipped">Skip</div>
+              <div class="item-approved">
+                <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-item unconfirmed" data-item="names">
+          <div class="list-item-wrapper">
+            <div class="item-title">Names, Titles, & Bios</div>
+            <div class="item-confirm">
+              <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+            </div>
+            <div class="item-options">
+              <div class="item-skipped">Skip</div>
+              <div class="item-approved">
+                <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-item unconfirmed" data-item="footnotes">
+          <div class="list-item-wrapper">
+            <div class="item-title">Annotations/Footnotes</div>
+            <div class="item-confirm">
+              <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+            </div>
+            <div class="item-options">
+              <div class="item-skipped">Skip</div>
+              <div class="item-approved">
+                <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-item unconfirmed" data-item="spellCheck">
+          <div class="list-item-wrapper">
+            <div class="item-title">Spellcheck</div>
+            <div class="item-confirm">
+              <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+            </div>
+            <div class="item-options">
+              <div class="item-skipped">Skip</div>
+              <div class="item-approved">
+                <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-item unconfirmed" data-item="subjectLine">
+          <div class="list-item-wrapper">
+            <div class="item-title">Subject line</div>
+            <div class="item-confirm">
+              <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+            </div>
+            <div class="item-options">
+              <div class="item-skipped">Skip</div>
+              <div class="item-approved">
+                <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-item unconfirmed" data-item="previewText">
+          <div class="list-item-wrapper">
+            <div class="item-title">Preview text</div>
+            <div class="item-confirm">
+              <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+            </div>
+            <div class="item-options">
+              <div class="item-skipped">Skip</div>
+              <div class="item-approved">
+                <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-item unconfirmed" data-item="links">
+          <div class="list-item-wrapper">
+            <div class="item-title">Links</div>
+            <div class="item-confirm">
+              <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+            </div>
+            <div class="item-options">
+              <div class="item-skipped">Skip</div>
+              <div class="item-approved">
+                <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-item unconfirmed" data-item="eventTimes">
+          <div class="list-item-wrapper">
+            <div class="item-title">Event times</div>
+            <div class="item-confirm">
+              <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+            </div>
+            <div class="item-options">
+              <div class="item-skipped">Skip</div>
+              <div class="item-approved">
+                <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-item unconfirmed" data-item="eventLocations">
+          <div class="list-item-wrapper">
+            <div class="item-title">Event locations</div>
+            <div class="item-confirm">
+              <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+            </div>
+            <div class="item-options">
+              <div class="item-skipped">Skip</div>
+              <div class="item-approved">
+                <svg height="30" viewBox="0 0 1792 1792" width="30" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script defer src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script defer src="https://www.gstatic.com/firebasejs/6.3.0/firebase-firestore.js"></script>
+
+  <!-- Initialize Firebase -->
+  <script defer src="init-firebase.js"></script>
+
+  <!-- qa-checklist -->
+  <script defer src="checklist.js"></script>
+</body>
+</html>

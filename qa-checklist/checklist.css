@@ -1,0 +1,303 @@
+/************************* @ **********************/
+/************************* @ **********************/
+/************************* @ **********************/
+
+.checklist-wrapper, .checklist-wrapper:before, .checklist-wrapper:after,
+.checklist-wrapper *, .checklist-wrapper *:before, .checklist-wrapper *:after  {
+  box-sizing: border-box;
+}
+
+.checklist-wrapper {
+  font-family: Roboto, sans-serif;
+  background:#dce0e2;
+  width:     210px;
+  min-width: 210px;
+  max-width: 210px;
+  height:auto;
+  position: relative;
+  overflow: visible;
+  padding:12px;
+}
+
+
+
+/************************* @ **********************/
+/************************* @ **********************/
+/************************* @ **********************/
+/*
+ * spinner
+ */
+
+ /* Spinner rotation */
+ @keyframes spinChecklist { to { transform: rotate(1080deg) } }
+
+ .spinner {
+     width: 1.75em;
+     height: 1.75em;
+     border-radius: 50%;
+     display: inline-block;
+     position: relative;
+     overflow: hidden;
+     box-shadow: inset 0 0 0 .1875em;
+     will-change: transform;
+     animation: spinChecklist 2666ms linear infinite;
+     clip-path: circle(.875em at center);
+
+     /* Set background to same color as pseudo elements. Defaults to white */
+     background-color: #dce0e2;
+ }
+
+ .spinner {
+   margin:50px auto 0;
+   position: absolute;
+   left:0; right:0;
+ }
+
+ .spinner[data-options*="blue"] { color: #4285f4 }
+ .spinner[data-options*="large"] { font-size: 3em }
+
+
+ .spinner::before,
+ .spinner::after {
+     content: "";
+     position: absolute;
+     width: 7em;
+     height: 1.75em;
+     background-color: inherit;
+ }
+
+ @keyframes shape-shift-before { to { transform: skewX(-45deg) translate(.875em, -.875em) } }
+
+ .spinner::before {
+     transform: skewX(80deg) translate(.875em, -.875em);
+     animation: shape-shift-before 1066.4ms cubic-bezier(.4, 0, .2, 1) infinite alternate;
+ }
+
+ @keyframes shape-shift-after { to { transform: skewX(45deg) translate(.875em, .875em) } }
+
+ .spinner::after {
+     transform: skewX(-80deg) translate(.875em, .875em);
+     animation: shape-shift-after 1066.4ms cubic-bezier(.4, 0, .2, 1) infinite alternate;
+ }
+
+
+ /************************* @ **********************/
+ /************************* @ **********************/
+ /************************* @ **********************/
+
+.checklist-header {
+  background:#fff;
+  margin-bottom:10px;
+  position: relative;
+  padding:26px 18px 26px 18px;
+  width: 100%;
+
+  border-radius:3px;
+  margin-top: -24px;
+
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,0.1);
+
+  border-bottom: 3px solid rgba(0,0,0,0.3);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.1);
+  border-left: 1px solid rgba(0,0,0,0.1);
+
+}
+.checklist-progress {
+  font-size:15px;
+  margin-bottom:5px;
+}
+.checklist-progress-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: #e5e9eb;
+}
+.checklist-progress-bar div {
+  background: #12dd72;
+  width:0%; height: 100%;
+  border-radius: 4px;
+  box-shadow: 0 0 3px 0 #fff, 0 0 7px 0 #12dd72;
+  transition: all .5s;
+}
+
+.resolve-all {
+  font-size:12px;
+  margin-top:15px;
+}
+.resolve-all * {
+  cursor:pointer;
+}
+.resolve-all *:hover {
+  color:#12dd72;
+
+}
+
+.checklist-items {
+
+}
+.list-item {
+  cursor: default;
+  position: relative;
+  height:42px;
+  line-height:42px;
+  margin-bottom:6px;
+  font-family:Roboto;
+  transition: all .25s;
+  display:flex;
+  align-items: center;
+  will-change: transform;
+}
+.list-item:last-child {
+  margin-bottom:0;
+}
+.list-item:hover {
+  transform: scale(1.05);
+}
+
+.list-item-wrapper {
+  position: relative;
+  overflow: hidden;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  width:100%;
+  background: #fff;
+  border-radius:4px;
+  box-shadow:0 2px 2px 0 rgba(0,0,0,0.1);
+  transition: all .25s;
+}
+.list-item .list-item-wrapper:hover {
+  box-shadow:0 8px 10px 2px rgba(0,0,0,0.15);
+  transition: all .25s;
+}
+
+.item-title {
+  padding-left:10px;
+  font-weight:500;
+  font-size:14px;
+  font-family: 'Roboto Condensed', 'Arial Condensed', sans-serif;
+}
+
+.item-confirm {
+  width:50px; height:-webkit-fill-available;
+
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.item-confirm:before {
+  content:"";
+
+  width:30px; height:30px;
+  border-radius:100%;
+  box-shadow:inset 0 0 0 4px #dce0e2;
+
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow .5s;
+}
+.item-confirm:hover:before {
+  box-shadow:inset 0 0 0 6px #c6cccf;
+  transition: box-shadow .5s;
+}
+
+.list-item.approved .item-confirm:before {
+  box-shadow:inset 0 0 0 4px #fff;
+}
+.list-item .item-confirm svg {
+  width:18px; height:18px;
+  position: absolute;
+  left:0; right:0;
+  margin: auto;
+}
+.list-item .item-confirm svg {
+  display:none;
+}
+.list-item.approved .item-confirm svg {
+  display:block;
+}
+.list-item.approved .list-item-wrapper {
+  background: #12dd72;
+  color:#fff;
+}
+.list-item.skipped .list-item-wrapper {
+  background: #e8ebec;
+  color:#b5b7b9;
+}
+
+.list-item.unconfirmed .item-confirm:after {
+  content:"";
+  display:block;
+  width:8px; height:8px; border-radius:100%;
+  background: #ed3777;
+  position: absolute;
+  left:0; right:0; margin:auto;
+
+  animation: pulseQ 1s infinite ease-in-out;
+  box-shadow: 0 0 0 3px rgba(237, 55, 119, 0.1);
+}
+/*
+.list-item.unconfirmed:before {
+  content:"";
+  display:block;
+  width:8px; height:8px; border-radius:100%;
+  background: #ed3777;
+  position: absolute;
+  left:-4px;
+
+  z-index: 5;
+
+  animation: pulseQ 1s infinite ease-in-out;
+  box-shadow: 0 0 0 3px rgba(237, 55, 119, 0.1);
+}
+*/
+@keyframes pulseQ {
+    0% { box-shadow: 0 0 0 2px rgba(237, 55, 119, .1); }
+    50% { box-shadow: 0 0 0 4px rgba(237, 55, 119, .3); }
+    100% { box-shadow: 0 0 0 2px rgba(237, 55, 119, .1); }
+}
+
+
+.item-options {
+  position: absolute;
+  top:0; left: calc(100% + 10px);
+  background: #3759ed;
+  color:#fff;
+  font-weight:bold;
+  border-radius: 3px;
+  width:110px;
+  cursor:pointer;
+
+  transition: transform .2s;
+  display: flex;
+}
+.item-options div:hover {
+  transform: scale(1.1);
+}
+.list-item ::selection  {
+  background: transparent;
+}
+
+.select-option .item-options {
+  transform: translate(-120px, 0);
+}
+
+.item-skipped {
+  width: 65px;
+  text-align:center;
+  padding-left:14px;
+}
+.item-approved {
+  width:65px;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  padding-right:0;
+}
+.item-approved svg {
+  width: 24px; height:24px;
+}
