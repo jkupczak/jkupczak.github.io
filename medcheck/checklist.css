@@ -133,7 +133,8 @@
 }
 
 .checklist-items {
-
+  display: flex;
+  flex-direction: column;
 }
 .list-item {
   cursor: default;
@@ -148,7 +149,7 @@
   will-change: transform;
 }
 .list-item:last-child {
-  margin-bottom:0;
+  /* margin-bottom:0; */
 }
 .list-item:hover {
   transform: scale(1.05);

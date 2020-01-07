@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>QA Checklist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="checklist.css">
+</head>
+<body>
+
+  <div class="main-container">
+
+    <div id="qa-checklist" class="checklist-wrapper">
+
+      <div id="spinner" class="spinner" data-options="large blue" role="progressbar" aria-valuetext="Loading…" style=""></div>
+
+      <header id="checklistHeader" class="checklist-header" style="display:none">
+        <div id="progress" class="checklist-progress">
+          9 checks remain
+        </div>
+        <div class="checklist-progress-bar">
+          <div id="progressBar"></div>
+        </div>
+        <div class="resolve-all">
+          <span>Skip All</span>&nbsp;&nbsp;&nbsp;
+          <span>Approve All</span>
+        </div>
+      </header>
+
+      <div id="checklist" class="checklist-items" style="display:none"></div>
+
+    </div>
+  </div>
+
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-firestore.js"></script>
+
+  <!-- Initialize Firebase -->
+  <script src="init-firebase.js"></script>
+
+  <script>
+    var campaign = db.collection("campaigns").doc("12345");
+  </script>
+
+  <!-- checklist -->
+  <script src="data.js"></script>
+  <script src="checklist.js"></script>
+
+  <script>
+    campaignId    = "12345";
+    subcampaignId = "htmla";
+    user          = "james";
+
+    runChecklist(campaignId, subcampaignId, user);
+  </script>
+</body>
+</html>

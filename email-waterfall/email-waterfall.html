@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Email Waterfall</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="email-waterfall.css">
+</head>
+<body>
+
+
+  <div class="main-container">
+
+    <iframe sandbox="allow-same-origin" src="https://preview.pardot.com/email/showHtmlMessage/id/33120221"></iframe>
+    <iframe sandbox="allow-same-origin" src="https://preview.pardot.com/email/showHtmlMessage/id/33120221"></iframe>
+    <iframe sandbox="allow-same-origin" src="https://preview.pardot.com/email/showHtmlMessage/id/33120221"></iframe>
+    <iframe sandbox="allow-same-origin" src="https://preview.pardot.com/email/showHtmlMessage/id/33120221"></iframe>
+    <iframe sandbox="allow-same-origin" src="https://preview.pardot.com/email/showHtmlMessage/id/33120221"></iframe>
+
+  </div>
+
+  <script>
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://preview.pardot.com/email/showHtmlMessage/id/33120221", false); // true = async, false = sync
+
+    // When xhring a local file, the response.status is 0
+    xhr.onload = function (e) {
+
+      if (this.response.length > 0) {
+
+        console.log(this.responsive);
+        resolve(this.response);
+
+      } else {
+
+        displayErrorMsg("missing");
+
+        reject({
+          status: this.status,
+          statusText: xhr.statusText,
+        });
+      }
+    };
+
+    xhr.onerror = function () {
+
+      reject({
+        status: this.status,
+        statusText: xhr.statusText,
+      });
+    };
+
+
+    try {
+      xhr.send();
+    }
+    catch(error) {
+
+      displayErrorMsg("fileaccess");
+      console.error(error);
+
+    }
+  </script>
+
+</body>
+</html>

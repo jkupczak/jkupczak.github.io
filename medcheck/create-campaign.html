@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Create Campaign</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="create-campaign.css">
+</head>
+<body>
+
+  <div class="main-container">
+
+    <h1>Create Campaign Playground</h1>
+
+    <section id="generator">
+      <h2>Create a campaign with the default checklist items</h2>
+      <input type="text" id="campaignId" value="12345">
+      <button id="submit" class="btn">Submit</button>
+    </section>
+
+    <section id="itemsList">
+      <h2>Pick, create, and edit checklist items</h2>
+      <div id="itemListWrapper">
+
+      </div>
+      <div id="addItemBtn" class="btn" style="display: none">Add Checklist Item</div>
+    </section>
+
+    <section id="email-test">
+      <h2>Test case for email address input modification</h2>
+      <input type="text" id="email-input" value="james@medbridgeed.com, rachel@medbridgeed.com, aaron.harrison+qa-pardot-12345@medbridgeed.com" style="width:100%"">
+    </section>
+
+  </div>
+
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-firestore.js"></script>
+
+  <!-- Initialize Firebase -->
+  <script src="init-firebase.js"></script>
+
+  <!-- create-campaign -->
+  <script src="data.js"></script>
+  <script src="create-campaign.js"></script>
+
+</body>
+</html>
