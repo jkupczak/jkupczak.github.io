@@ -75,7 +75,7 @@
     </style>
   </head>
   <body>
-    
+
     <div id="main-container">
 
       <div id="nav">
@@ -150,12 +150,17 @@ Nicole Pixton</textarea>
         var array = getInput();
         var outputArray = [];
 
+        console.log(data);
+        console.log(array);
+        console.log(outputArray);
+
         for (i = data.length - 1; i >= 0; --i) {
 
           // console.log(i, data.length, data[i] );
 
+          // convert both values to lowercase and then compare them
           var matches = data.filter(function (match) {
-            return match === data[i];
+            return match.toLowerCase() === data[i].toLowerCase();
           });
 
           // console.log("matches", matches);
