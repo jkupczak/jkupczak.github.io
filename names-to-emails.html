@@ -84,6 +84,7 @@
         <div data-action="convert-to-emails" class="btn">Names to Emails</div>
         <div data-action="convert-to-names" class="btn">Emails to Names</div>
         <div data-action="label-duplicates" class="btn">Label Duplicates</div>
+        <div data-action="convert-title-to-role" class="btn">Title to Role</div>
       </div>
 
       <div class="main">
@@ -131,6 +132,10 @@ Nicole Pixton</textarea>
         // Convert to State Names
         if ( event.target.dataset.action === "convert-to-state-names" ) {
           convertStates("long");
+        }
+        // Convert to State Names
+        if ( event.target.dataset.action === "convert-title-to-role" ) {
+          convertRoles();
         }
 
       }, false);
@@ -293,6 +298,49 @@ Nicole Pixton</textarea>
       //////////////////////////////
       //////////////////////////////
       //////////////////////////////
+
+      var roles_cSuite = [
+        "President",
+        "Vice President",
+        "VP",
+        "CEO",
+        "CFO",
+        "COO",
+        "Chairman",
+        "Founder",
+        "Owner",
+        "Partner"
+      ]
+
+      const roles_director = [
+        ""
+      ]
+
+      const roles_manager = [
+        "",
+        ""
+      ]
+
+      const roles_hr = [
+        "",
+        ""
+      ]
+
+      const roles_it = [
+        "",
+        ""
+      ]
+
+      const roles_marketing = [
+        "",
+        ""
+      ]
+
+      const roles_sales = [
+        "",
+        ""
+      ]
+
       var dataArray = [
         { input: 'Alexandra Klein', output: 'alexandra.klein@medbridgeed.com'},
         { input: 'Andrew Edgerton', output: 'andrew.edgerton@medbridgeed.com'},
