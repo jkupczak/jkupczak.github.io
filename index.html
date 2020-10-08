@@ -4,40 +4,103 @@
     <meta charset="utf-8">
     <title></title>
     <style>
+      html {
+        box-sizing: border-box;
+      }
+      *, *:before, *:after {
+        box-sizing: inherit;
+      }
+
       body {
         font-family: sans-serif;
         padding:40px;
+      }
+      div {
+        display: flex;
+        flex-wrap: wrap;
       }
       a {
         display:block;
         padding:20px;
         background:rgba(0,0,0,0.1);
-        margin:10px;
+        margin:0 20px 10px 0;
         border-radius:2px;
+        display:flex;
+        width:calc(50% - 10px);
+        flex-direction:columns;
+      }
+      a:nth-child(even) {
+        margin-right:0;
       }
       a:hover {
         background:rgba(0,0,0,0.15);
+      }
+      a > :first-child {
+        width:25%;
       }
     </style>
   </head>
   <body>
 
-    <a href="https://www.medbridgeeducation.com/">
-      No tracking parameters
-    </a>
+    <div>
 
-    <a href="https://www.medbridgeeducation.com/?utm_medium=email&utm_source=Enterprise+Newsletter&utm_campaign=Business+Recovery+OCT2020&utm_content=banner">
-      From an email campaign
-    </a>
+      <a href="https://www.medbridgeeducation.com/">
+        <p>No tracking parameters</p>
+        <ul>
+          <li>https://www.medbridgeeducation.com/
+        </ul>
+      </a>
 
-    <a href="https://www.medbridgeeducation.com/?utm_medium=social&utm_source=twitter&utm_campaign=Patient+Satisfaction+OCT2020">
-      From a Twitter campaign
-    </a>
+      <a href="https://www.medbridgeeducation.com/?utm_medium=email&utm_source=Enterprise+Newsletter&utm_campaign=Business+Recovery+OCT2020&utm_content=banner">
+        <p>From an email campaign</p>
+        <ul>
+          <li>https://www.medbridgeeducation.com/
+          <li>?utm_medium=email
+          <li>&utm_source=Enterprise+Newsletter
+          <li>&utm_campaign=Business+Recovery+OCT2020
+          <li>&utm_content=banner
+        </ul>
+      </a>
 
-    <a href="https://www.medbridgeeducation.com/?utm_medium=cpc&utm_source=google&utm_campaign=Telehealth+OCT2020">
-      From a Google Ads campaign
-    </a>
+      <a href="https://www.medbridgeeducation.com/?utm_medium=social&utm_source=twitter&utm_campaign=Patient+Satisfaction+OCT2020">
+        <p>From a Twitter campaign</p>
+        <ul>
+          <li>https://www.medbridgeeducation.com/
+          <li>?utm_medium=social
+          <li>&utm_source=twitter
+          <li>&utm_campaign=Patient+Satisfaction+OCT2020
+        </ul>
+      </a>
 
+      <a href="https://www.medbridgeeducation.com/?utm_medium=social&utm_source=twitter&utm_campaign=Patient+Satisfaction+OCT2020">
+        <p>From a Twitter campaign with extra non-tracking parameters</p>
+        <ul>
+          <li>https://www.medbridgeeducation.com/
+          <li>?utm_medium=social
+          <li>&utm_source=twitter
+          <li>&utm_campaign=Patient+Satisfaction+OCT2020
+          <li>&foo=bar
+        </ul>
+      </a>
 
+      <a href="https://www.medbridgeeducation.com/enterprise/clinician-mobile-app/?utm_medium=cpc&utm_source=google&utm_campaign=Telehealth+OCT2020">
+        <p>From a Google Ads campaign to our mobile app page</p>
+        <ul>
+          <li>https://www.medbridgeeducation.com/enterprise/clinician-mobile-app/
+          <li>?utm_medium=cpc
+          <li>&utm_source=google
+          <li>&utm_campaign=Telehealth+OCT2020
+        </ul>
+      </a>
+
+      <a href="https://www.medbridgeeducation.com/enterprise/clinician-mobile-app/?utm_source=google">
+        <p>From a Google Ads campaign to our mobile app page, only one parameter (source)</p>
+        <ul>
+          <li>https://www.medbridgeeducation.com/enterprise/clinician-mobile-app/
+          <li>&utm_source=google
+        </ul>
+      </a>
+
+    </div>
   </body>
 </html>
